@@ -1,21 +1,25 @@
 # Saif Ullah — Remote Sensing & GIS Portfolio
 
-A responsive, multipage portfolio with a dedicated landing page, project gallery, CV and project contribution guide.
+Personal website hosted at [saifullah391.github.io](https://saifullah391.github.io/).
+
+## Edit on this computer
+
+This folder is connected to the GitHub Pages repository. Edit the HTML pages and `assets/style.css` / `assets/main.js` here.
+
+To publish your changes, open PowerShell in this folder and run:
+
+```powershell
+.\publish.ps1
+```
+
+The helper shows the changed files, asks for a commit message, and asks you to type `PUSH` before it sends them to GitHub. A push to `main` triggers the GitHub Pages deployment automatically. Check the live site after the Pages build finishes.
+
+Do not add files that contain private information, such as a CV with a street address. The project gallery uses clearly labeled sample concepts; replace them with your own cleared project materials before presenting them as actual work.
 
 ## Pages
 
-- `index.html` — choose Portfolio or CV
-- `portfolio.html` — responsive project gallery, filters, experience, skills and contact
+- `index.html` — landing page with Portfolio and CV choices
+- `portfolio.html` — filterable project gallery, experience and contact
 - `projects.html` — sample case-study structure
-- `cv.html` — online CV with Print / Save as PDF
-- `how-to-add-projects.html` — material checklist for adding future work
-
-## Demo content
-
-Project cards and case-study examples are explicitly labeled illustrative/dummy content. They make no claims of actual analysis or results. Replace them with approved project materials before presenting them as completed work.
-
-## Local preview
-
-Open `index.html` in a browser. Google Fonts load online; system fallbacks are included.
-
-The public CV includes the requested emails and phone numbers and omits the street address and exact home coordinates.
+- `cv.html` — online CV and print-to-PDF option
+- `how-to-add-projects.html` — project material checklist

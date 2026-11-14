@@ -1,0 +1,34 @@
+$ErrorActionPreference = 'Stop'
+Set-Location -LiteralPath $PSScriptRoot
+
+$status = git status --short
+if ($LASTEXITCODE -ne 0) { throw 'Could not read Git status.' }
+if (-not $status) {
+  Write-Host 'There are no changes to publish.' -ForegroundColor Yellow
+  exit 0
+}
+
+Write-Host 'Files changed in this portfolio:' -ForegroundColor Cyan
+$status | ForEach-Object { Write-Host "  $_" }
+$message = Read-Host 'Commit message'
+if ([string]::IsNullOrWhiteSpace($message)) { throw 'A commit message is required.' }
+
+git add -A
+if ($LASTEXITCODE -ne 0) { throw 'Could not stage the changes.' }
+Write-Host "`nFiles that will be sent to the public repository:" -ForegroundColor Cyan
+git diff --cached --name-only
+if ($LASTEXITCODE -ne 0) { throw 'Could not list staged files.' }
+
+$confirm = Read-Host "Type PUSH to commit these files and publish them to saifullah391.github.io"
+if ($confirm -cne 'PUSH') {
+  git reset
+  Write-Host 'Stopped; your edits remain in the folder.' -ForegroundColor Yellow
+  exit 0
+}
+
+git commit -m $message
+if ($LASTEXITCODE -ne 0) { throw 'Commit failed. Review the Git message above.' }
+git push origin main
+if ($LASTEXITCODE -ne 0) { throw 'Push failed. Check the GitHub sign-in prompt or error, then run this script again.' }
+
+Write-Host "`nPushed successfully. GitHub Pages will publish the update at https://saifullah391.github.io/" -ForegroundColor Green
