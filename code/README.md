@@ -1,6 +1,6 @@
 # Project source code
 
-Scripts behind the case studies on [saifullah391.github.io](https://saifullah391.github.io/portfolio.html#work).
+Scripts behind the case studies on [saifullah391.github.io](https://saifullah391.github.io/#work).
 
 | Folder | Project | Scripts |
 | --- | --- | --- |

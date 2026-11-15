@@ -1,4 +1,4 @@
-# Saif Ullah — Remote Sensing & GIS Portfolio
+# Saif Ullah: Remote Sensing & GIS Portfolio
 
 Personal website hosted at [saifullah391.github.io](https://saifullah391.github.io/).
 
@@ -23,12 +23,14 @@ Do not add files that contain private information, such as a CV with a street ad
 3. Portfolio → Projects → add a project: title, short web name, summary, card image, large map, more figures, source-code files and links.
 4. **Save = publish.** Each save is a commit to `main`; the site updates after the Pages build (1–2 minutes). New projects get a card on the portfolio and a page at `project.html?p=<short-web-name>`.
 
-To try changes without publishing, run a local server in this folder (`python -m http.server 8642`), open <http://localhost:8642/admin/> and choose **Work with Local Repository**.
+To try changes without publishing, run a local server in this folder (`py -m http.server 8642`), open <http://localhost:8642/admin/> and choose **Work with Local Repository**.
 
 ## Pages
 
-- `index.html`: landing page with Portfolio and CV choices
-- `portfolio.html`: project gallery (filterable), areas of work, experience, publication, contact
+- `index.html`: the whole one-page site: hero with animated globe, stats, filterable and searchable projects, before/after image sliders, interactive map (Leaflet), experience timeline, education, skills and a contact form
+- `portfolio.html`: redirect to `index.html#work`, so old links keep working
+- `assets/main.js`: all interactions (dark/light theme, globe, sliders, map, filters, counters, lightbox, contact form)
+- `assets/img/slider-*.jpg`: matched image pairs for the before/after sliders
 - `projects/*.html`: hand-built case studies (Islamabad GeoAI, Karachi coast, Bali zonal analysis)
 - `project.html`: detail page for projects added through the admin page (reads `data/projects.json`)
 - `cv.html` + `assets/Saif-Ullah-CV.pdf`: online CV and downloadable PDF

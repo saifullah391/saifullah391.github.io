@@ -8,7 +8,7 @@ backend:
     update: "Update {{collection}} via admin page"
     uploadMedia: "Upload {{path}} via admin page"
 site_url: https://saifullah391.github.io
-display_url: https://saifullah391.github.io/portfolio.html
+display_url: https://saifullah391.github.io/
 media_folder: assets/uploads
 public_folder: /assets/uploads
 
