@@ -51,3 +51,5 @@ body.home-page:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events
 @media(max-width:1100px){.capability-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.capability-grid{grid-template-columns:1fr}.stat-row{grid-template-columns:repeat(2,minmax(0,1fr))}.code-note{margin:-30px 0 50px}.section-bar{flex-direction:column;align-items:flex-start}}
 @media print{.skip-link,.cv-actions{display:none!important}.cv-head h1 .accent{color:#111!important}.cv-entry h3 a{color:#111}}
+.skill-list{list-style:none;margin:0 0 80px;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px}.skill-list li{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:24px 0;border-bottom:1px solid var(--line)}.skill-num{font:500 11px var(--mono);color:var(--lime);padding-top:5px}.skill-list h3{font-size:20px;margin:0 0 8px}.skill-list p{color:var(--muted);font-size:14px;margin:0 0 10px}.skill-list .skill-tags{font:500 11px var(--mono);letter-spacing:.08em;color:var(--cyan);margin:0}
+@media(max-width:760px){.skill-list{grid-template-columns:1fr}}
