@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080b12">
+<title>GeoAI Land-Cover Classification of Islamabad | Saif Ullah</title>
+<meta name="description" content="Case study: a Random Forest classifier on Sentinel-2 imagery maps land cover in Islamabad, validated on spatially held-out blocks (OA 71.7%, kappa 0.57).">
+<link rel="canonical" href="https://saifullah391.github.io/projects/islamabad-geoai-landcover.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Saif Ullah">
+<meta property="og:title" content="GeoAI Land-Cover Classification of Islamabad | Saif Ullah">
+<meta property="og:description" content="Case study: a Random Forest classifier on Sentinel-2 imagery maps land cover in Islamabad, validated on spatially held-out blocks (OA 71.7%, kappa 0.57).">
+<meta property="og:url" content="https://saifullah391.github.io/projects/islamabad-geoai-landcover.html">
+<meta property="og:image" content="https://saifullah391.github.io/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body><a class="skip-link" href="#main">Skip to content</a><div class="grain" aria-hidden="true"></div>
+<header class="site-header"><a class="brand" href="../index.html" aria-label="Saif Ullah home"><span class="brand-mark" aria-hidden="true">SU</span><span>SAIF ULLAH</span></a><button class="menu-toggle" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false">☰</button><nav class="nav-links" id="site-nav" aria-label="Main navigation"><a href="../portfolio.html#work">Work</a><a href="../cv.html">CV</a><a href="../portfolio.html#contact">Contact</a></nav></header>
+<main class="page-wrap" id="main">
+  <section class="detail-hero"><a class="back-link" href="../portfolio.html#work">← BACK TO PORTFOLIO</a><p class="eyebrow" style="margin-top:34px">CASE STUDY · GEOAI · MACHINE LEARNING</p><h1>GeoAI land cover:<br><span class="accent">Islamabad.</span></h1><p class="lead">Can a machine-learning model trained on one cloud-free Sentinel-2 scene reproduce a 10 m land-cover map of Islamabad, and how well does it do on areas it has never seen? A Random Forest classifier, tested with spatial block cross-validation.</p></section>
+  <figure class="detail-figure detail-img"><img src="../assets/img/islamabad-rf-comparison.jpg" width="2366" height="763" alt="Three panels of Islamabad: Sentinel-2 true colour image, the Random Forest land-cover prediction, and the Impact Observatory reference map. Forest covers the Margalla Hills in the north; built-up sectors run diagonally across the centre; Rawal Lake is shown as water."><figcaption>Input image (26 Oct 2024), Random Forest prediction and the reference map used for training labels.</figcaption></figure>
+  <section class="detail-content">
+    <div class="detail-main">
+      <h2>Question</h2>
+      <p>Islamabad combines planned sectors, the forested Margalla Hills, Rawal Lake and fast-growing peri-urban land. The aim was to build a transparent, reproducible GeoAI baseline: a pixel classifier that learns land cover from Sentinel-2 reflectance, with an honest estimate of how it performs away from its training data.</p>
+      <h2>Data</h2>
+      <p><strong>Imagery:</strong> Sentinel-2 L2A, 26 October 2024 (tile 43SCT, 0% cloud), bands B2, B3, B4, B8, B11 and B12 at 10 m. <strong>Labels:</strong> Impact Observatory 10 m annual land use/land cover for 2024. Both come from Microsoft Planetary Computer. The study area is 640.8 km² (72.92–73.22°E, 33.58–33.78°N).</p>
+      <h2>Method</h2>
+      <p><strong>1. Features.</strong> Six reflectance bands (after removing the +1000 offset that processing baseline 05.11 adds) plus NDVI, NDBI, MNDWI and a 5×5 NDVI texture layer: 10 features per pixel.</p>
+      <p><strong>2. Spatial split.</strong> The scene is cut into 1 km blocks and 30% of blocks are held out for testing. Neighbouring pixels are strongly correlated, so a random pixel split would overstate accuracy.</p>
+      <p><strong>3. Training.</strong> Up to 5,000 pixels per class from the training blocks (25,000 in total), Random Forest with 300 trees (scikit-learn).</p>
+      <p><strong>4. Evaluation.</strong> 300,000 pixels from the held-out blocks: overall accuracy, Cohen's kappa, per-class F1, producer's and user's accuracy.</p>
+      <h2>Results</h2>
+      <dl class="stat-row"><div><dt>Overall accuracy</dt><dd>71.7%</dd></div><div><dt>Kappa</dt><dd>0.57</dd></div><div><dt>Macro F1</dt><dd>0.68</dd></div><div><dt>Built area F1</dt><dd>0.82</dd></div></dl>
+      <p>Built area (F1 0.82), trees (0.76) and water (0.77) are separated well. Most errors fall between crops and rangeland (F1 0.57 and 0.48), which look alike in a late-October scene after harvest. The model also finds more cropland (20.7% vs 12.5%) and less built area (45.7% vs 58.7%) than the reference. The reference map labels whole sectors as built area, while the 10 m classifier picks up the green belts, parks and fields between buildings. SWIR bands and MNDWI were the most important features.</p>
+      <figure class="inline-figure"><img src="../assets/img/islamabad-rf-accuracy.png" width="1944" height="790" alt="Left: row-normalised confusion matrix for water, trees, crops, built area and rangeland. Right: bar chart of feature importance, led by SWIR2, SWIR1 and MNDWI." loading="lazy"><figcaption>Accuracy on spatially held-out blocks (left) and Random Forest feature importance (right).</figcaption></figure>
+      <h2>Limitations and next steps</h2>
+      <p>The labels are themselves a modelled product, so these scores measure agreement with Impact Observatory, not ground truth. Next steps: field-checked or hand-digitised validation points, a multi-season image stack to separate crops from rangeland, and a deep-learning (U-Net) comparison.</p>
+    </div>
+    <aside class="detail-side"><h3>PROJECT DETAILS</h3><p><strong>Study area</strong><br>Islamabad and Margalla Hills, Pakistan</p><p><strong>Date</strong><br>Sentinel-2 scene of 26 Oct 2024</p><p><strong>Data</strong><br>Sentinel-2 L2A; Impact Observatory 10 m LULC 2024 (Planetary Computer)</p><p><strong>Tools</strong><br>Python: scikit-learn, rasterio, NumPy, SciPy, matplotlib</p><p><strong>Model</strong><br>Random Forest, 300 trees, 10 features, spatial block hold-out</p><p><strong>Source code</strong><br><a href="../code/common/stac.py">stac.py</a> · <a href="../code/islamabad/download.py">download.py</a> · <a href="../code/islamabad/rf_classify.py">rf_classify.py</a> · <a href="../code/islamabad/metrics.json">metrics.json</a></p><a class="text-link" href="../portfolio.html#contact">ASK ABOUT THIS PROJECT ↗</a></aside>
+  </section>
+</main>
+<footer class="site-footer"><span>SAIF ULLAH · REMOTE SENSING &amp; GIS</span><a href="../portfolio.html">PORTFOLIO ↗</a><span>© <span id="year">2026</span></span></footer><script src="../assets/main.js"></script></body></html>

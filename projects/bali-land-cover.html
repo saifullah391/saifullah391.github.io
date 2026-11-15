@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080b12">
+<title>Bali Land Cover by Regency (2024) | Saif Ullah</title>
+<meta name="description" content="Case study: an ArcGIS Pro / arcpy workflow that summarises Sentinel-2 10 m land cover for Bali's nine regencies with Tabulate Area.">
+<link rel="canonical" href="https://saifullah391.github.io/projects/bali-land-cover.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Saif Ullah">
+<meta property="og:title" content="Bali Land Cover by Regency (2024) | Saif Ullah">
+<meta property="og:description" content="Case study: an ArcGIS Pro / arcpy workflow that summarises Sentinel-2 10 m land cover for Bali's nine regencies with Tabulate Area.">
+<meta property="og:url" content="https://saifullah391.github.io/projects/bali-land-cover.html">
+<meta property="og:image" content="https://saifullah391.github.io/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body><a class="skip-link" href="#main">Skip to content</a><div class="grain" aria-hidden="true"></div>
+<header class="site-header"><a class="brand" href="../index.html" aria-label="Saif Ullah home"><span class="brand-mark" aria-hidden="true">SU</span><span>SAIF ULLAH</span></a><button class="menu-toggle" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false">☰</button><nav class="nav-links" id="site-nav" aria-label="Main navigation"><a href="../portfolio.html#work">Work</a><a href="../cv.html">CV</a><a href="../portfolio.html#contact">Contact</a></nav></header>
+<main class="page-wrap" id="main">
+  <section class="detail-hero"><a class="back-link" href="../portfolio.html#work">← BACK TO PORTFOLIO</a><p class="eyebrow" style="margin-top:34px">CASE STUDY · REMOTE SENSING · ZONAL ANALYSIS</p><h1>Land cover by regency:<br><span class="accent">Bali, 2024.</span></h1><p class="lead">How much of each Bali regency is forest, cropland or built-up land? An automated ArcGIS Pro workflow turns Sentinel-2 land-cover tiles into a per-regency table, a styled map and a summary, in a single script run.</p></section>
+  <figure class="detail-figure detail-img"><img src="../assets/img/bali-lulc-2024.png" width="1425" height="1093" alt="Land use and land cover map of Bali for 2024 with regency boundaries. Trees dominate Jembrana, Buleleng and Tabanan; built area dominates Kota Denpasar and southern Badung; cropland is concentrated on the southern slopes."><figcaption>Sentinel-2 10 m land use / land cover for 2024, clipped to Bali's nine regencies (displayed at 30 m).</figcaption></figure>
+  <section class="detail-content">
+    <div class="detail-main">
+      <h2>Question</h2>
+      <p>Bali's land cover varies sharply between the urban south and the forested west and north. The goal was a repeatable, regency-level breakdown of land cover, in hectares and percent of area, that can be rerun for any year.</p>
+      <h2>Data</h2>
+      <p><strong>Land cover:</strong> Esri Living Atlas Sentinel-2 10 m Land Use/Land Cover (2024), exported as raw class values in WGS 84 / UTM zone 50S. <strong>Zones:</strong> geoBoundaries ADM2 boundaries for Indonesia, filtered to Bali's nine regencies.</p>
+      <h2>Method</h2>
+      <p><strong>1. Zones.</strong> Convert the ADM2 GeoJSON, select the Bali regencies and project them to UTM 50S.</p>
+      <p><strong>2. Land cover.</strong> Mosaic the 12 downloaded tiles at 10 m, extract by the regency mask, build the attribute table and apply the standard class colour map.</p>
+      <p><strong>3. Zonal analysis.</strong> Run <em>Tabulate Area</em> (Spatial Analyst) by regency, then compute hectares and percentage for each class and write them onto a copy of the regency polygons.</p>
+      <p><strong>4. Output.</strong> Create a new map with a graduated-colour regency layer and print a summary table. The whole workflow is one arcpy script.</p>
+      <h2>Results</h2>
+      <p>Across 559,051 ha, trees cover 55.3% of Bali, built area 25.8%, crops 10.6% and rangeland 6.6%. Kota Denpasar is 84.9% built-up and Badung 54.6%. Jembrana (75.8% trees), Buleleng (65.3%) and Tabanan (62.2%) remain the most forested regencies. Klungkung, which includes the Nusa Penida islands, has the largest rangeland share (23.7%).</p>
+      <figure class="inline-figure"><img src="../assets/img/bali-zonal-stats.png" width="2052" height="991" alt="Left: stacked bar chart of land cover percentage for each Bali regency, from Kota Denpasar (mostly built area) to Jembrana (mostly trees). Right: choropleth map of built-up share by regency, highest in Denpasar and Badung." loading="lazy"><figcaption>Land-cover share per regency from Tabulate Area (left) and built-up share mapped by regency (right).</figcaption></figure>
+      <h2>Limitations</h2>
+      <p>The land-cover product is a modelled global classification, so class accuracy varies locally. In the source product, "built area" includes scattered settlements and roads, which can raise its share in densely settled agricultural regencies. A small share of each regency is masked as cloud.</p>
+    </div>
+    <aside class="detail-side"><h3>PROJECT DETAILS</h3><p><strong>Study area</strong><br>Bali, Indonesia (9 regencies)</p><p><strong>Year</strong><br>2024</p><p><strong>Data</strong><br>Esri Sentinel-2 10 m LULC; geoBoundaries ADM2</p><p><strong>Tools</strong><br>ArcGIS Pro, arcpy, Spatial Analyst (Tabulate Area, Extract by Mask); Python (geopandas, rasterio, matplotlib) for the web figures</p><p><strong>Output</strong><br>Regency polygons with hectare and percent fields per class; styled map; summary table</p><p><strong>Source code</strong><br><a href="../code/bali/bali_zonal.py">bali_zonal.py</a> (arcpy) · <a href="../code/bali/web_figures.py">web_figures.py</a></p><a class="text-link" href="../portfolio.html#contact">ASK ABOUT THIS PROJECT ↗</a></aside>
+  </section>
+</main>
+<footer class="site-footer"><span>SAIF ULLAH · REMOTE SENSING &amp; GIS</span><a href="../portfolio.html">PORTFOLIO ↗</a><span>© <span id="year">2026</span></span></footer><script src="../assets/main.js"></script></body></html>

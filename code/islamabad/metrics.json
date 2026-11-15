@@ -1,0 +1,68 @@
+{
+ "scene": "S2A_MSIL2A_20241026T054931_R048_T43SCT_20241026T085949",
+ "train_px": 25000,
+ "test_px": 300000,
+ "oa": 0.717,
+ "kappa": 0.57,
+ "macro_f1": 0.678,
+ "per_class": {
+  "Water": {
+   "f1": 0.766,
+   "producer": 0.979,
+   "user": 0.629,
+   "ref_share": 0.01
+  },
+  "Trees": {
+   "f1": 0.762,
+   "producer": 0.754,
+   "user": 0.771,
+   "ref_share": 0.146
+  },
+  "Crops": {
+   "f1": 0.566,
+   "producer": 0.734,
+   "user": 0.461,
+   "ref_share": 0.141
+  },
+  "Built area": {
+   "f1": 0.816,
+   "producer": 0.722,
+   "user": 0.939,
+   "ref_share": 0.593
+  },
+  "Rangeland": {
+   "f1": 0.477,
+   "producer": 0.589,
+   "user": 0.402,
+   "ref_share": 0.11
+  }
+ },
+ "importance": {
+  "Blue": 0.086,
+  "Green": 0.051,
+  "Red": 0.092,
+  "NIR": 0.098,
+  "SWIR1": 0.14,
+  "SWIR2": 0.156,
+  "NDVI": 0.115,
+  "NDBI": 0.063,
+  "MNDWI": 0.122,
+  "NDVI texture": 0.077
+ },
+ "area_km2": 640.8,
+ "cloud_pct": 0.0,
+ "pred_share": {
+  "Water": 1.4,
+  "Trees": 15.8,
+  "Crops": 20.7,
+  "Built area": 45.7,
+  "Rangeland": 16.4
+ },
+ "ref_share_all": {
+  "Water": 0.9,
+  "Trees": 16.0,
+  "Crops": 12.5,
+  "Built area": 58.7,
+  "Rangeland": 11.9
+ }
+}

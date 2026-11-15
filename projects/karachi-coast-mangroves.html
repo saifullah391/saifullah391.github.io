@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080b12">
+<title>Karachi Coast: Waterline and Mangrove Change 2016–2024 | Saif Ullah</title>
+<meta name="description" content="Case study: Sentinel-2 MNDWI waterline mapping and NDVI mangrove canopy change along the Karachi coast, Korangi and Phitti creeks, 2016–2024.">
+<link rel="canonical" href="https://saifullah391.github.io/projects/karachi-coast-mangroves.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Saif Ullah">
+<meta property="og:title" content="Karachi Coast: Waterline and Mangrove Change 2016–2024 | Saif Ullah">
+<meta property="og:description" content="Case study: Sentinel-2 MNDWI waterline mapping and NDVI mangrove canopy change along the Karachi coast, Korangi and Phitti creeks, 2016–2024.">
+<meta property="og:url" content="https://saifullah391.github.io/projects/karachi-coast-mangroves.html">
+<meta property="og:image" content="https://saifullah391.github.io/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body><a class="skip-link" href="#main">Skip to content</a><div class="grain" aria-hidden="true"></div>
+<header class="site-header"><a class="brand" href="../index.html" aria-label="Saif Ullah home"><span class="brand-mark" aria-hidden="true">SU</span><span>SAIF ULLAH</span></a><button class="menu-toggle" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false">☰</button><nav class="nav-links" id="site-nav" aria-label="Main navigation"><a href="../portfolio.html#work">Work</a><a href="../cv.html">CV</a><a href="../portfolio.html#contact">Contact</a></nav></header>
+<main class="page-wrap" id="main">
+  <section class="detail-hero"><a class="back-link" href="../portfolio.html#work">← BACK TO PORTFOLIO</a><p class="eyebrow" style="margin-top:34px">CASE STUDY · COASTAL REMOTE SENSING · CHANGE DETECTION</p><h1>Karachi coast:<br><span class="accent">water, mud and mangroves.</span></h1><p class="lead">How did the waterline and the mangrove canopy along Clifton, DHA and the Korangi and Phitti creeks change between 2016 and 2024? Two Sentinel-2 scenes from the same orbit, a water index with automatic thresholding, and a vegetation index restricted to the intertidal zone.</p></section>
+  <figure class="detail-figure detail-img"><img src="../assets/img/karachi-coast-map.jpg" width="1261" height="906" alt="Map of the Karachi coast showing land in grey, water in dark blue, areas that changed from water to land in lime green (mainly on the creek islands) and land that became water in light blue." loading="eager"><figcaption>Land and water change between 13 Dec 2016 and 27 Oct 2024. Lime green: water to land; light blue: land to water.</figcaption></figure>
+  <section class="detail-content">
+    <div class="detail-main">
+      <h2>Question</h2>
+      <p>Karachi's coast is a mix of reclaimed urban waterfront, port infrastructure and the mangrove creeks at the western edge of the Indus Delta. The aim was a repeatable method to (1) map where the land/water boundary moved and (2) measure the coastal mangrove canopy at two dates.</p>
+      <h2>Data</h2>
+      <p>Sentinel-2 L2A scenes of <strong>13 December 2016</strong> and <strong>27 October 2024</strong>, both from relative orbit 134, tile 42RUN, under 0.05% cloud. Green, red, NIR and SWIR1 bands at 10 m over 497.7 km² (67.05–67.32°E, 24.72–24.88°N), from Microsoft Planetary Computer.</p>
+      <h2>Method</h2>
+      <p><strong>1. Harmonise.</strong> The 2024 scene (processing baseline 05.11) carries a +1000 reflectance offset that the reprocessed 2016 scene (02.12) does not. Removing it first is essential: without the correction the 2024 image looks hazy and the water threshold shifts.</p>
+      <p><strong>2. Water.</strong> MNDWI = (Green − SWIR1) / (Green + SWIR1), thresholded per scene with Otsu's method (0.148 in 2016, 0.125 in 2024), then cleaned with morphological opening and closing.</p>
+      <p><strong>3. Change.</strong> Water→land and land→water pixels are compared, and patches smaller than 1 ha are removed.</p>
+      <p><strong>4. Mangroves.</strong> NDVI &gt; 0.3 within 300 m of open water, outside the water mask, at each date.</p>
+      <figure class="inline-figure"><img src="../assets/img/karachi-coast-change.jpg" width="2366" height="652" alt="Three panels: false-colour Sentinel-2 images of the Karachi coast in 2016 and 2024 with mangroves in red and the waterline in orange, and the change map." loading="lazy"><figcaption>False-colour (NIR-R-G) images with the detected waterline, and the resulting change map.</figcaption></figure>
+      <h2>Results</h2>
+      <dl class="stat-row"><div><dt>Water → land</dt><dd>19.5 km²</dd></div><div><dt>Land → water</dt><dd>2.0 km²</dd></div><div><dt>Mangrove 2016</dt><dd>52.0 km²</dd></div><div><dt>Mangrove 2024</dt><dd>59.4 km²</dd></div></dl>
+      <p>About 19.5 km² changed from water to land, but most of it is on the creek islands and mudflats, not the urban waterfront. That pattern points mainly to differences in tide level and mudflat exposure between the two dates rather than permanent reclamation, so it should not be read as land gain without tide data. The coastal vegetation result is more robust: canopy within 300 m of the creeks grew from 52.0 to 59.4 km² (+14%), with 11.5 km² of new canopy and 4.0 km² lost. That is consistent with mangrove recovery and planting in the Korangi–Phitti creek system.</p>
+      <figure class="inline-figure"><img src="../assets/img/karachi-mangroves.jpg" width="2055" height="730" alt="Two maps of coastal vegetation (green) along the Karachi creeks, 2016 and 2024, showing denser and more extensive canopy in 2024." loading="lazy"><figcaption>Coastal vegetation canopy (NDVI &gt; 0.3 near open water), 2016 and 2024.</figcaption></figure>
+      <h2>Limitations and next steps</h2>
+      <p>Two single dates cannot separate tides from real shoreline movement. A tide-aware composite (many scenes binned by tide height) would fix this. The NDVI threshold also includes some non-mangrove vegetation near the shore. Next steps: tide-normalised waterlines and a mangrove classifier validated against field or high-resolution data.</p>
+    </div>
+    <aside class="detail-side"><h3>PROJECT DETAILS</h3><p><strong>Study area</strong><br>Karachi coast: Clifton, DHA, Korangi and Phitti creeks</p><p><strong>Dates</strong><br>13 Dec 2016 and 27 Oct 2024</p><p><strong>Data</strong><br>Sentinel-2 L2A, relative orbit 134 (Planetary Computer)</p><p><strong>Methods</strong><br>MNDWI + Otsu threshold, morphological cleaning, NDVI canopy mapping, change detection</p><p><strong>Tools</strong><br>Python: rasterio, NumPy, SciPy, matplotlib</p><p><strong>Source code</strong><br><a href="../code/common/stac.py">stac.py</a> · <a href="../code/karachi/download.py">download.py</a> · <a href="../code/karachi/coastline_mangroves.py">coastline_mangroves.py</a> · <a href="../code/karachi/metrics.json">metrics.json</a></p><a class="text-link" href="../portfolio.html#contact">ASK ABOUT THIS PROJECT ↗</a></aside>
+  </section>
+</main>
+<footer class="site-footer"><span>SAIF ULLAH · REMOTE SENSING &amp; GIS</span><a href="../portfolio.html">PORTFOLIO ↗</a><span>© <span id="year">2026</span></span></footer><script src="../assets/main.js"></script></body></html>

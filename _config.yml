@@ -1,0 +1,5 @@
+# GitHub Pages settings. Files listed here stay in the repository but are not published on the website.
+exclude:
+  - README.md
+  - publish.ps1
+  - _config.yml

@@ -1,0 +1,43 @@
+{
+  "projects": [
+    {
+      "slug": "islamabad-geoai-landcover",
+      "title": "GeoAI land-cover classification of Islamabad",
+      "kicker": "GEOAI · MACHINE LEARNING · SENTINEL-2",
+      "category": "geoai",
+      "date": "2024-10-26",
+      "summary": "A Random Forest trained on Sentinel-2 bands, spectral indices and texture maps five land-cover classes across Islamabad and the Margalla Hills, tested on spatially held-out 1 km blocks.",
+      "thumbnail": "assets/img/islamabad-geoai-thumb.jpg",
+      "thumbnail_alt": "Random Forest land-cover prediction for Islamabad: forest in the Margalla Hills, built-up sectors and cropland to the south-east.",
+      "tags": ["RANDOM FOREST", "SENTINEL-2", "SPATIAL CV", "PYTHON"],
+      "page": "projects/islamabad-geoai-landcover.html",
+      "featured": true
+    },
+    {
+      "slug": "karachi-coast-mangroves",
+      "title": "Karachi coast: waterline and mangrove change, 2016–2024",
+      "kicker": "REMOTE SENSING · COASTAL · CHANGE DETECTION",
+      "category": "remote",
+      "date": "2024-10-27",
+      "summary": "Two Sentinel-2 scenes from the same orbit map how the waterline and coastal mangrove canopy changed along Clifton, DHA and the Korangi and Phitti creeks.",
+      "thumbnail": "assets/img/karachi-coast-thumb.jpg",
+      "thumbnail_alt": "Change map of the Karachi coast with new land in lime green on the creek islands south of the city.",
+      "tags": ["MNDWI", "OTSU", "NDVI", "MANGROVES"],
+      "page": "projects/karachi-coast-mangroves.html",
+      "featured": true
+    },
+    {
+      "slug": "bali-land-cover",
+      "title": "Land cover by regency: Bali, Indonesia (2024)",
+      "kicker": "REMOTE SENSING · ZONAL ANALYSIS · ARCPY",
+      "category": "gis",
+      "date": "2024-12-31",
+      "summary": "An automated ArcGIS Pro workflow that mosaics Sentinel-2 10 m land-cover tiles and uses Tabulate Area to report hectares and percent of each class for Bali's nine regencies.",
+      "thumbnail": "assets/img/bali-thumb.jpg",
+      "thumbnail_alt": "Land-cover map of Bali with forest in green, built-up land in red and cropland in orange.",
+      "tags": ["TABULATE AREA", "ARCPY", "ARCGIS PRO", "SENTINEL-2 LULC"],
+      "page": "projects/bali-land-cover.html",
+      "featured": true
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+# Portfolio admin (Sveltia CMS). Open https://saifullah391.github.io/admin/ and sign in with GitHub.
+# Every save is a commit to the main branch, so it goes live on the website after the Pages build (1-2 minutes).
+backend:
+  name: github
+  repo: saifullah391/saifullah391.github.io
+  branch: main
+  commit_messages:
+    update: "Update {{collection}} via admin page"
+    uploadMedia: "Upload {{path}} via admin page"
+site_url: https://saifullah391.github.io
+display_url: https://saifullah391.github.io/portfolio.html
+media_folder: assets/uploads
+public_folder: /assets/uploads
+
+collections:
+  - name: portfolio
+    label: Portfolio
+    files:
+      - name: projects
+        label: Projects
+        file: data/projects.json
+        format: json
+        fields:
+          - name: projects
+            label: Projects
+            label_singular: Project
+            widget: list
+            summary: "{{fields.title}}"
+            add_to_top: true
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: slug, label: "Short web name (lowercase-with-dashes, unique)", widget: string, pattern: ['^[a-z0-9-]+$', 'Use lowercase letters, numbers and dashes only'] }
+              - { name: kicker, label: "Category line (e.g. REMOTE SENSING · NDVI)", widget: string, required: false }
+              - { name: category, label: Filter, widget: select, options: [{ label: GeoAI, value: geoai }, { label: Remote sensing, value: remote }, { label: GIS & analysis, value: gis }], default: remote }
+              - { name: date, label: Date, widget: datetime, time_format: false, date_format: YYYY-MM-DD, format: YYYY-MM-DD, required: false }
+              - { name: summary, label: "Short summary (card and page intro)", widget: text }
+              - { name: thumbnail, label: "Card image (about 800×420)", widget: image, required: false }
+              - { name: thumbnail_alt, label: "Image description (for screen readers)", widget: string, required: false }
+              - { name: cover, label: "Large map for the top of the project page", widget: image, required: false }
+              - { name: tags, label: Tags, widget: list, required: false }
+              - { name: study_area, label: Study area, widget: string, required: false }
+              - { name: data, label: Data sources, widget: string, required: false }
+              - { name: tools, label: Tools, widget: string, required: false }
+              - { name: body, label: "Full description (question, data, method, results)", widget: markdown, required: false, buttons: [bold, italic, link, heading-two, bulleted-list], editor_components: [] }
+              - name: images
+                label: More maps and figures
+                widget: list
+                required: false
+                fields:
+                  - { name: image, label: Image, widget: image }
+                  - { name: alt, label: Image description, widget: string, required: false }
+                  - { name: caption, label: Caption, widget: string, required: false }
+              - name: code
+                label: Source code files
+                widget: list
+                required: false
+                fields:
+                  - { name: label, label: Name shown, widget: string, required: false }
+                  - { name: file, label: "File (.py, .js, .ipynb, .R …)", widget: file }
+              - name: links
+                label: Links (paper, web map, GitHub repo)
+                widget: list
+                required: false
+                fields:
+                  - { name: label, label: Label, widget: string }
+                  - { name: url, label: URL, widget: string }
+              - { name: page, label: "Hand-built page (leave empty for new projects)", widget: hidden, required: false }
+              - { name: featured, label: Featured, widget: hidden, required: false }
